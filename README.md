@@ -3,6 +3,8 @@
 Exports mudlet map to be read from browser
 ![Screenshot](https://raw.githubusercontent.com/Delwing/mudlet-map-reader/media/screenshot.jpg)
 
+Repository with base code is here: https://github.com/Delwing/mudlet-map-reader/
+
 ## Installation
 
 Grab .mpackage from latest release.
