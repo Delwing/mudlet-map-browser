@@ -1,0 +1,33 @@
+name: Tag and release
+on: 
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+    - uses: actions/checkout@master
+    - name: Checkout mudlet-map-reader repository
+      uses: actions/checkout@master
+      with:
+        repository: Delwing/mudlet-map-reader
+        path: 'mudlet-map-reader'
+    - name: Create .mpackage
+      run: python ./.github/workflows/package.py
+    - id: release
+      name: Bump version and release
+      uses: rymndhng/release-on-push-action@master
+      with:
+        bump_version_scheme: minor
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: mudlet-map-reader.mpackage
+        asset_name: mudlet-map-reader.mpackage
+        tag: ${{ steps.release.outputs.tag_name }}
+        overwrite: true
