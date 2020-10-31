@@ -2,17 +2,25 @@ from zipfile import ZipFile
 import os
 from os.path import basename
 
+ignoreFiles = [
+    "mudlet-map-reader/.gitignore",
+    "mudlet-map-reader/.gitattributes",
+    "mudlet-map-reader/images/logo.png"
+
+]
+
 def addDirToZip(zipObj, dirName):
     for folderName, subfolders, filenames in os.walk(dirName):
         for filename in filenames:
             filePath = os.path.join(folderName, filename)
-            if !filePath.startswith("./.git"):
-                basePath = os.path.relpath(filePath, dirName)
+            basePath = os.path.relpath(filePath, dirName)
+            if(not basePath.startswith(".git") and not filePath in ignoreFiles):
+                print(filePath, basePath)
                 zipObj.write(filePath, basePath)
 
 with ZipFile("mudlet-map-reader.mpackage", "w") as zipObj:
     addDirToZip(zipObj, "mudlet-map-reader")
     zipObj.write("config.lua")
     zipObj.write("standalone.xml")
-    zipObj.write("favicon.ico", "images/favicon.ico")
+    zipObj.write("favicon.ico", "favicon.ico")
     zipObj.write("logo.png", "images/logo.png")
