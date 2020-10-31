@@ -3,10 +3,9 @@ import os
 from os.path import basename
 
 ignoreFiles = [
-    "mudlet-map-reader/.gitignore",
-    "mudlet-map-reader/.gitattributes",
-    "mudlet-map-reader/images/logo.png"
-
+    ".gitignore",
+    ".gitattributes",
+    "images/logo.png"
 ]
 
 def addDirToZip(zipObj, dirName):
