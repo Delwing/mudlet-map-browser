@@ -6,7 +6,7 @@ def addDirToZip(zipObj, dirName):
     for folderName, subfolders, filenames in os.walk(dirName):
         for filename in filenames:
             filePath = os.path.join(folderName, filename)
-            if filePath.startswith("./.git"):
+            if !filePath.startswith("./.git"):
                 basePath = os.path.relpath(filePath, dirName)
                 zipObj.write(filePath, basePath)
 
