@@ -5,7 +5,8 @@ from os.path import basename
 ignoreFiles = [
     ".gitignore",
     ".gitattributes",
-    "images/logo.png"
+    "images/logo.png",
+    "favicon.ico"
 ]
 
 def addDirToZip(zipObj, dirName):
