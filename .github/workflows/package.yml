@@ -24,6 +24,7 @@ jobs:
       uses: rymndhng/release-on-push-action@master
       with:
         bump_version_scheme: minor
+        release_body: ${{ github.event.client_payload.message }}
     - name: Upload binaries to release
       uses: svenstaro/upload-release-action@v2
       with:
